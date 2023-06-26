@@ -16,23 +16,21 @@ class Locale extends Injectable
     {
         session_start();
 
-        // $language = $_SESSION['lang'];
+   
+        // print_r($_GET);
+        // die;
 
-        // $messages = [];
+       $language = $_GET['lang'];
+    
 
-        // $translationFile = APP_PATH . '/messages/' . $language;
-
-        // if (true !== file_exists($translationFile)) {
-        //     $translationFile = APP_PATH . '/messages/en-GB.php';
-        // }
-        $language = $this->request->getBestLanguage();
         $messages = [];
 
-        $translationFile =  APP_PATH . '/messages/' . $language;
+        $translationFile = APP_PATH . '/messages/' . $language;
 
         if (true !== file_exists($translationFile)) {
             $translationFile = APP_PATH . '/messages/en-GB.php';
         }
+
         require $translationFile;
 
         $interpolator = new InterpolatorFactory();
